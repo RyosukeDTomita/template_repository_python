@@ -1,0 +1,11 @@
+# Dev Containerではこちらが優先される。
+services:
+  nikto_py_app:
+    build:
+      target: devcontainer
+      context: .
+      dockerfile: Dockerfile
+    image: python-devcontainer:latest
+    container_name: python-devcontainer-container
+    volumes:
+      - ./:/app # contextから見たパスではなく，リポジトリから見たパスがvolume mountされる。

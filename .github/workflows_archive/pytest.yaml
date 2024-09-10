@@ -1,0 +1,40 @@
+name: run-pytest-on-push
+on:
+  push:
+    paths:
+      - .github/workflows/pytest.yaml
+      - src/**/*.py
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  PYTHON_VERSION: 3.12.4
+
+jobs:
+  run-pytest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      # checkout repository to runner
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: install package using aqua
+        uses: aquaproj/aqua-installer@6ce1f8848ec8e61f14d57bd5d7597057a6dd187c # v3.0.1
+        with:
+          aqua_version: v2.29.0
+
+      - name: set up python
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: run pytest
+        run: |
+          rye pin ${{ env.PYTHON_VERSION }}
+          rye sync
+          rye test
+
