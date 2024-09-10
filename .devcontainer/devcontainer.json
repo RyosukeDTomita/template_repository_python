@@ -1,0 +1,25 @@
+{
+  "name": "devcontainer", // 任意
+  "dockerComposeFile": [
+    "../compose.yaml",
+    "compose.yaml"
+  ],
+  "service": "nikto_py_app", // compose.yamlのサービス名
+  "workspaceFolder": "/app",
+  "overrideCommand": true, // コンテナを起動したままにする DockerfileのCMDで永続するコマンドを実行しているなら不要
+  // Dev Container起動時に開発ツールをインストール
+  "postCreateCommand": "./.devcontainer/install-pkg.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "exiasr.hadolint",
+        "oderwat.indent-rainbow",
+        "ionutvmi.path-autocomplete",
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "njpwerner.autodocstring"
+      ]
+    }
+  }
+}

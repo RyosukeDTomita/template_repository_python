@@ -1,0 +1,37 @@
+name: push GitHub Container Registry
+on:
+  release:
+    types: [created]
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  GITHUB_CONTAINER_REGISTRY_TAG: ryosukedtomita/nikto_py
+  IMAGE_NAME: nikto_py
+
+
+jobs:
+  create-package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: checkout repository to runner
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: create docker images
+        run: docker buildx bake
+
+      # imageをgithub container registryにpushする
+      - name: Log in to GitHub Container Registry
+        run: echo ${{ secrets.GH_SECRET }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push Docker image to GitHub Container Registry
+        run: |
+          docker tag ${{ env.IMAGE_NAME}} ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:latest
+          docker tag ${{ env.IMAGE_NAME}} ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run nikto_py --version)
+          docker push ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:latest
+          docker push ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run nikto_py --version)

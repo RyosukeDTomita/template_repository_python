@@ -1,0 +1,7 @@
+.gitignore
+CODEOWNERS
+.git/
+.github/
+Dockerfile
+compose.yaml
+pyproject_toml-0.0.10-py3-none-any.whl
