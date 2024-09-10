@@ -2,7 +2,7 @@
 # APP NAME
 
 <!--fixme repository-->
-[!un license](https://img.shields.io/github/license/RyosukeDTomita/<your-repository>)
+![un license](https://img.shields.io/github/license/RyosukeDTomita/template_repository_python)
 
 ## INDEX
 
