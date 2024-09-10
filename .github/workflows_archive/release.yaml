@@ -10,6 +10,7 @@ defaults:
 env:
   PYTHON_VERSION: 3.12.4
   RELEASE_VERSION: ${{ github.event.release.tag_name }}
+  APP_NAME: hogehoge # FIXME
 
 
 jobs:
@@ -43,11 +44,11 @@ jobs:
         uses: shogo82148/actions-upload-release-asset@8f032eff0255912cc9c8455797fd6d72f25c7ab7 # v1.7.5
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "./dist/nikto_py-${{ env.RELEASE_VERSION }}-py3-none-any.whl"
-          asset_name: "./dist/nikto_py-${{ env.RELEASE_VERSION }}-py3-none-any.whl"
+          asset_path: "./dist/${{ env.APP_NAME }}-${{ env.RELEASE_VERSION }}-py3-none-any.whl"
+          asset_name: "./dist/${{ env.APP_NAME }}-${{ env.RELEASE_VERSION }}-py3-none-any.whl"
       - name: upload Releases tar.gz
         uses: shogo82148/actions-upload-release-asset@8f032eff0255912cc9c8455797fd6d72f25c7ab7 # v1.7.5
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "./dist/nikto_py-${{ env.RELEASE_VERSION }}.tar.gz"
-          asset_name: "./dist/nikto_py-${{ env.RELEASE_VERSION }}.tar.gz"
+          asset_path: "./dist/${{ env.APP_NAME }}-${{ env.RELEASE_VERSION }}.tar.gz"
+          asset_name: "./dist/${{ env.APP_NAME }}-${{ env.RELEASE_VERSION }}.tar.gz"

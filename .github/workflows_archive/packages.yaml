@@ -8,8 +8,8 @@ defaults:
     shell: bash
 
 env:
-  GITHUB_CONTAINER_REGISTRY_TAG: ryosukedtomita/nikto_py
-  IMAGE_NAME: nikto_py
+  GITHUB_CONTAINER_REGISTRY_TAG: ryosukedtomita/hogehoge # FIXME
+  IMAGE_NAME: hogehoge # FIXME
 
 
 jobs:
@@ -32,6 +32,6 @@ jobs:
       - name: Push Docker image to GitHub Container Registry
         run: |
           docker tag ${{ env.IMAGE_NAME}} ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:latest
-          docker tag ${{ env.IMAGE_NAME}} ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run nikto_py --version)
+          docker tag ${{ env.IMAGE_NAME}} ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run hogehoge --version) # FIXME
           docker push ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:latest
-          docker push ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run nikto_py --version)
+          docker push ghcr.io/${{ env.GITHUB_CONTAINER_REGISTRY_TAG }}:$(docker run hogehoge --version) # FIXME
