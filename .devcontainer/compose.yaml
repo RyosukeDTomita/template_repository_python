@@ -1,6 +1,6 @@
 # Dev Containerではこちらが優先される。
 services:
-  nikto_py_app:
+  sigma_app: # fixme
     build:
       target: devcontainer
       context: .
