@@ -1,0 +1,22 @@
+{
+  "markdown-pdf.highlightStyle": "solarized-dark.css",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.formatOnSave": true,
+  },
+  // 抑止設定
+  "markdownlint.config": {
+    "MD010": false, // タブ
+    "MD013": false // 長い行
+  },
+  // python
+  // NOTE: venvを使っている場合は，pythonのinterpreterPathが通っていないとformatterが動かない。
+  "python.defaultInterpreterPath": "/app/.venv/bin/python",
+
+  "flake8.args": ["--ignore=E111, E114, E402, E501"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+  },
+}
