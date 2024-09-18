@@ -3,6 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: my_portscanner:latest
-    container_name: sigma_app_container
+    image: sigma_app_image:latest # fixme
+    container_name: sigma_app_container # fixme
 
